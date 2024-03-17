@@ -1,6 +1,3 @@
-# code-gpt
-Automated Webserver creation using OpenAI API and Rust
-
 # Code-GPT: Revolutionizing Rust Development with AI Automation
 
 Welcome to Code-GPT, a venture into the melding of AI and software development, focusing on the Rust programming language. This project embodies my vision of utilizing GPT-powered AI to redefine the coding landscape, making it more efficient, robust, and accessible to developers worldwide. Code-GPT is not just a tool; it's a testament to the future of automated software engineering, where AI agents write, test, and debug code autonomously.
