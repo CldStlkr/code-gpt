@@ -8,7 +8,7 @@ pub fn print_project_scope(_project_description: &str) {
     /// Output: Prints an object response in the following format:
     ///   {
     ///     "is_crud_required": bool, // true if site needs CRUD functionality
-    ///     "is_user_login_required": bool // true if site needs users to be able to log in and log out
+    ///     "is_user_login_and_logout": bool // true if site needs users to be able to log in and log out
     ///     "is_external_urls_required": bool // true if site needs to fetch data from third part providers
     ///   }
     /// Example 1:
@@ -16,7 +16,7 @@ pub fn print_project_scope(_project_description: &str) {
     ///   prints:
     ///   {
     ///     "is_crud_required": true
-    ///     "is_user_login_required": true
+    ///     "is_user_login_and_logout": true
     ///     "is_external_urls_required": bool true
     ///   }
     /// Example 2:
@@ -24,7 +24,7 @@ pub fn print_project_scope(_project_description: &str) {
     ///   prints:
     ///   {
     ///     "is_crud_required": true
-    ///     "is_user_login_required": false
+    ///     "is_user_login_and_logout": false
     ///     "is_external_urls_required": bool false
     ///   }
     println!(OUTPUT)

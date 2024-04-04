@@ -53,7 +53,7 @@ impl AgentBackendDeveloper {
         let ai_response: String = ai_task_request(
             msg_context,
             &self.attributes.position,
-            get_func_string!(print_backend_webserver_code),
+            get_function_string!(print_backend_webserver_code),
             print_backend_webserver_code,
         )
         .await;
@@ -71,7 +71,7 @@ impl AgentBackendDeveloper {
         let ai_response: String = ai_task_request(
             msg_context,
             &self.attributes.position,
-            get_func_string!(print_improved_webserver_code),
+            get_function_string!(print_improved_webserver_code),
             print_improved_webserver_code,
         )
         .await;
@@ -90,7 +90,7 @@ impl AgentBackendDeveloper {
         let ai_response: String = ai_task_request(
             msg_context,
             &self.attributes.position,
-            get_func_string!(print_fixed_code),
+            get_function_string!(print_fixed_code),
             print_fixed_code,
         )
         .await;
@@ -108,7 +108,7 @@ impl AgentBackendDeveloper {
         let ai_response: String = ai_task_request(
             msg_context,
             &self.attributes.position,
-            get_func_string!(print_rest_api_endpoints),
+            get_function_string!(print_rest_api_endpoints),
             print_rest_api_endpoints,
         )
         .await;
@@ -147,7 +147,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
 
                 AgentState::UnitTesting => {
                     // Guard:: ENSURE AI SAFETY
-                    PrintCommand::UnitTest.print_agent_msg(
+                    PrintCommand::UnitTest.print_agent_message(
                         self.attributes.position.as_str(),
                         "Backend Code Unit Testing: Requesting user input",
                     );
@@ -159,7 +159,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                     }
 
                     // Build and Test Code
-                    PrintCommand::UnitTest.print_agent_msg(
+                    PrintCommand::UnitTest.print_agent_message(
                         self.attributes.position.as_str(),
                         "Backend Code Unit Testing: building project...",
                     );
@@ -176,7 +176,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                     // Determine if build errors
                     if build_backend_server.status.success() {
                         self.bug_count = 0;
-                        PrintCommand::UnitTest.print_agent_msg(
+                        PrintCommand::UnitTest.print_agent_message(
                             self.attributes.position.as_str(),
                             "Backend Code Unit Testing: Test server build successful...",
                         );
@@ -190,7 +190,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
 
                         // Exit if too many bugs
                         if self.bug_count > 2 {
-                            PrintCommand::Issue.print_agent_msg(
+                            PrintCommand::Issue.print_agent_message(
                                 self.attributes.position.as_str(),
                                 "Backend Code Unit Testing: Too many bugs found in code",
                             );
@@ -219,7 +219,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                     let check_endpoints: Vec<RouteObject> = api_endpoints
                         .iter()
                         .filter(|&route_object| {
-                            route_object.method == "get" && route_object.is_route_dynamic == false
+                            route_object.method == "get" && route_object.is_route_dynamic == "false"
                         })
                         .cloned()
                         .collect();
@@ -228,7 +228,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                     factsheet.api_endpoint_schema = Some(check_endpoints.clone());
 
                     // Run backend application
-                    PrintCommand::UnitTest.print_agent_msg(
+                    PrintCommand::UnitTest.print_agent_message(
                         self.attributes.position.as_str(),
                         "Backend Code Unit Testing: Starting web server...",
                     );
@@ -243,7 +243,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                         .expect("Failed to run backend application");
 
                     // Let user know testing on server will take place soon
-                    PrintCommand::UnitTest.print_agent_msg(
+                    PrintCommand::UnitTest.print_agent_message(
                         self.attributes.position.as_str(),
                         "Backend Code Unit Testing: Launching tests on server in 5 seconds...",
                     );
@@ -256,7 +256,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                         // Confirm url testing
                         let testing_msg: String =
                             format!("Testing endpoint '{}'...", endpoint.route);
-                        PrintCommand::UnitTest.print_agent_msg(
+                        PrintCommand::UnitTest.print_agent_message(
                             self.attributes.position.as_str(),
                             testing_msg.as_str(),
                         );
@@ -276,7 +276,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                                         "WARNING: Failed to call backend url endpoint {}",
                                         endpoint.route
                                     );
-                                    PrintCommand::UnitTest.print_agent_msg(
+                                    PrintCommand::Issue.print_agent_message(
                                         self.attributes.position.as_str(),
                                         err_msg.as_str(),
                                     );
@@ -288,7 +288,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
                                     .kill()
                                     .expect("Failed to kill backend web server");
                                 let err_msg: String = format!("Error checking backend {}", e);
-                                PrintCommand::UnitTest.print_agent_msg(
+                                PrintCommand::Issue.print_agent_message(
                                     self.attributes.position.as_str(),
                                     err_msg.as_str(),
                                 );
@@ -298,7 +298,7 @@ impl SpecialFunctions for AgentBackendDeveloper {
 
                     save_api_endpoints(&api_endpoints_str);
 
-                    PrintCommand::UnitTest.print_agent_msg(
+                    PrintCommand::UnitTest.print_agent_message(
                         self.attributes.position.as_str(),
                         "Backend testing complete...",
                     );
@@ -330,7 +330,7 @@ mod tests {
         "project_description": "build a website that fetches and tracks fitness progress with timezone information",
         "project_scope": {
           "is_crud_required": true,
-          "is_user_login_required": true,
+          "is_user_login_and_logout": true,
           "is_external_urls_required": true
         },
         "external_urls": [

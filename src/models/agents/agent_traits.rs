@@ -1,14 +1,11 @@
-use crate::helpers::general::deserialize_string_to_bool;
 use crate::models::agent_basic::basic_agent::BasicAgent;
 use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
-//Map Json format that we told llm to provide
 pub struct RouteObject {
-    #[serde(deserialize_with = "deserialize_string_to_bool")]
-    pub is_route_dynamic: bool,
+    pub is_route_dynamic: String,
     pub method: String,
     pub request_body: serde_json::Value,
     pub response: serde_json::Value,
@@ -18,7 +15,7 @@ pub struct RouteObject {
 #[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
 pub struct ProjectScope {
     pub is_crud_required: bool,
-    pub is_user_login_required: bool,
+    pub is_user_login_and_logout: bool,
     pub is_external_urls_required: bool,
 }
 
@@ -33,10 +30,10 @@ pub struct FactSheet {
 
 #[async_trait]
 pub trait SpecialFunctions: Debug {
-    //Used by manager to get attributes from other agents
+    // Used to that manager can get attributes from Agents
     fn get_attributes_from_agent(&self) -> &BasicAgent;
 
-    //Used by manager to execute the other agents
+    // This function will allow agents to execute their logic
     async fn execute(
         &mut self,
         factsheet: &mut FactSheet,
