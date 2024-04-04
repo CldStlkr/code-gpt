@@ -1,4 +1,4 @@
-# Code-GPT: Revolutionizing Rust Development with AI Automation
+# Code-GPT: Rust Development with AI Automation
 
 Welcome to Code-GPT, a venture into the melding of AI and software development, focusing on the Rust programming language. This project embodies my vision of utilizing GPT-powered AI to redefine the coding landscape, making it more efficient, robust, and accessible to developers worldwide. Code-GPT is not just a tool; it's a testament to the future of automated software engineering, where AI agents write, test, and debug code autonomously.
 
@@ -14,10 +14,6 @@ The flagship capability of Code-GPT is an AI agent designed to construct a web s
 - **Custom AI Agents**: Explore the forefront of AI technology by creating agents capable of writing and testing Rust code.
 - **Rust and AI Integration**: Dive deep into Rust, leveraging its features to interact with cutting-edge AI APIs like GPT-4.
 - **Hands-On Learning Experience**: Build a fully functional web server as a practical application of the concepts learned.
-
-## Why I Created Code-GPT
-
-My motivation behind developing Code-GPT was to bridge the gap between AI technology and software development, particularly in Rust. With the rapid advancements in AI and machine learning, I saw an opportunity to enhance the development process, making it not only faster but also more reliable. Code-GPT represents a leap towards a future where developers can focus on creative and complex tasks while AI handles the more mundane or repetitive aspects of coding.
 
 ## How It Works
 
